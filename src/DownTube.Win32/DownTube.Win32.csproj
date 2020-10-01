@@ -7,4 +7,8 @@
     <AssemblyName>DownTube (Win32)</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DownTube.Core\DownTube.Core.csproj" />
+  </ItemGroup>
+
 </Project>

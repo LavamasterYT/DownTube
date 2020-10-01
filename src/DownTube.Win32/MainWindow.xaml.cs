@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DownTube.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,32 @@ namespace DownTube.Win32
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Video> vidList = new List<Video>();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void removeVideo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void downloadVideo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void add_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Run(() =>
+            {
+                Video vid = new Video(url.Text);
+                vidList.Add(vid);
+            });
+
+            videos.ItemsSource = vidList;
         }
     }
 }

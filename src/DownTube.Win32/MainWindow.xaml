@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DownTube.Win32"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="550" Width="400">
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="10 10">
+            <ListBox x:Name="videos">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel Height="75">
+                            <Image DockPanel.Dock="Left" Height="60" Width="106" x:Name="thumbnail" Source="{Binding ThumbnailURL}" RenderOptions.BitmapScalingMode="HighQuality" />
+                            <StackPanel DockPanel.Dock="Left" Margin="5 5">
+                                <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock Text="{Binding Channel}" Foreground="Gray" FontWeight="Bold"/>
+                            </StackPanel>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Remove video" x:Name="removeVideo" Click="removeVideo_Click"/>
+                        <MenuItem Header="Download video" x:Name="downloadVideo" Click="downloadVideo_Click"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
+        </Grid>
+
+        <StackPanel Margin="10 0" Grid.Row="1">
+            <DockPanel LastChildFill="True" HorizontalAlignment="Stretch">
+                <Button x:Name="add" DockPanel.Dock="Right" Content="Add" Width="50" Margin="5 0 0 0" Click="add_Click"/>
+                <TextBox x:Name="url" DockPanel.Dock="Left" />
+            </DockPanel>
+        </StackPanel>
     </Grid>
 </Window>
